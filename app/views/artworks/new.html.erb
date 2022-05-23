@@ -1,0 +1,42 @@
+<main>
+  <div class="container">
+    <h2 class="page-title">
+      新規作品投稿
+    </h2>
+    <div class="spacer-medium"></div>
+    <% if @artwork.errors.any? %>
+      <div class="notification is-danger">
+        <h2><%= pluralize(@artwork.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
+        <ul>
+          <% @artwork.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-6">
+            <%= form_for @artwork do |f| %>
+              <div class="field">
+                <%= f.label :title, "作品名", class: "label" %>
+                <%= f.text_field :title, class: "input" %>
+              </div>
+              <div class="field">
+                <%= f.label :body, "詳細", class: "label" %>
+                <%= f.text_area :body, class: "textarea" %>
+              </div>
+              <div class="field border-none">
+                <%= f.label :image, "写真", class: "label" %>
+                <%= f.attachment_field :image, class: "input" %>
+              </div>
+              <div class="spacer-medium"></div>
+              <%= f.submit '投稿', class: "button is-success primary-light" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>

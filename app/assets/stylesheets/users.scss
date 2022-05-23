@@ -1,0 +1,103 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+@import "mixin";
+
+.users {
+  &__nav {
+    ul {
+      @include flex;
+      &::before,
+      &::after {
+        content: "";
+        width: 24%;
+      }
+      &::before {
+        order: 1;
+      }
+      li {
+        width: 24%;
+        padding: 32px 16px;
+        border-radius: 12px;
+        box-shadow: 1px 1px 4px rgba($color: $black, $alpha: 0.6);
+        @include pc {
+          padding: calc(32vw / (1280 / 100)) calc(16vw / (1280 / 100));
+        }
+        @include tab {
+          width: 48%;
+          padding: calc(32vw / (768 / 100));
+        }
+      }
+    }
+    &-thum {
+      img {
+        width: 256px;
+        height: 256px;
+        object-fit: cover;
+        @include pc {
+          width: calc(256vw / (1280 / 100));
+          height: calc(256vw / (1280 / 100));
+        }
+        @include tab {
+          width: calc(266vw / (768 / 100));
+          height: calc(266vw / (768 / 100));
+        }
+      }
+    }
+    &-name {
+      margin-top: 32px;
+      font-size: 28px;
+    }
+    &-count {
+      margin-top: 8px;
+      font-size: 16px;
+    }
+  }
+}
+
+.userDetail__pro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  &-img {
+    img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+    }
+  }
+  &-name {
+    font-size: 26px;
+  }
+  &-mail {
+    font-size: 18px;
+  }
+  &-edit {
+    padding: 4px 6px;
+    font-size: 18px;
+    background: $primaryLight;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px rgba($color: $black, $alpha: 0.6);
+  }
+  &-text {
+    max-width: 700px;
+    margin: 32px auto 0;
+    font-size: 18px;
+  }
+}
+
+.userDetail-thum {
+  img {
+    width: 100% !important;
+    height: 240px !important;
+    object-fit: cover !important;
+    @include pc {
+      height: calc(240vw / (1280 / 100)) !important;
+    }
+    @include tab {
+      height: calc(440vw / (768 / 100)) !important;
+    }
+  }
+}

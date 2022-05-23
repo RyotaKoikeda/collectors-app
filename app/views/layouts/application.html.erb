@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Collectors</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <header class="header">
+    <div class="container">
+      <% if flash[:notice] %>
+        <div class="notification is-info">
+          <p class="notice"><%= notice %></p>
+        </div>
+      <% end %>
+      
+      <% if flash[:alert] %>
+        <div class="notification is-danger">
+          <p class="alert"><%= alert %></p>
+        </div>
+      <% end %>
+    
+        <h1>
+          <%= link_to root_path do %>
+            Collectors
+          <% end %>
+        </h1>
+
+        <% if user_signed_in? %>
+          <nav id="navbarExampleTransparentExample" class="header__nav">
+            <ul>
+              <li>
+                <%= link_to "作品一覧", artworks_path %>
+              </li>
+              <li>
+                <%= link_to "作品投稿", new_artwork_path %>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <%= link_to "コレクター一覧", users_path %>
+              </li>
+              <li>
+                <%= link_to "マイページ", user_path(current_user) %>
+              </li>
+              <li>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <% else %>
+        <nav id="navbarExampleTransparentExample" class="header__nav">
+          <ul>
+            <li>
+              <%= link_to "作品一覧", artworks_path %>
+            </li>
+            <li>
+              <%= link_to "コレクター一覧", users_path %>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <%= link_to "ログイン", new_user_session_path %>
+            </li>
+            <li>
+              <%= link_to "新規登録", new_user_registration_path %>
+            </li>
+          </ul>
+        </nav>
+        <% end %>
+      </div>
+    </header>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<main>
+  <div class="container">
+    <h2 class="page-title">
+      コレクター詳細
+    </h2>
+    <div class="spacer-medium"></div>
+    <div class="userDetail__pro">
+      <div class="userDetail__pro-img">
+        <%= attachment_image_tag @user, :profile_image, fallback: "no-image.png" %>
+      </div>
+      <h3  class="userDetail__pro-name">
+        <%= @user.username %>
+      </h3>
+      <% if @user.id == current_user.id %>
+        <p class="userDetail__pro-mail">
+          <%= @user.email %>
+        </p>
+        <p class="userDetail__pro-edit">
+          <%= link_to "編集", edit_user_path(@user) %>
+        </p>
+      <% end %>
+      </div>
+      <p  class="userDetail__pro-text">
+        <%= @user.profile %>
+      </p>
+      <div class="spacer-medium"></div>
+      <section class="section">
+        <div class="columns is-multiline">
+          <% @user.artworks.each do |artwork| %>
+            <div class="column is-4">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-4by3 userDetail-thum">
+                    <%= link_to artwork_path(artwork) do %>
+                      <%= attachment_image_tag artwork, :image, fallback: "no-image.png" %>
+                    <% end %>
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <%= link_to artwork_path(artwork), class: "panel-block" do %>
+                        <span class="panel-icon">
+                          <i class="fas fa-book" aria-hidden="true"></i>
+                        </span>
+                        この作品を見る
+                      <% end %>
+                      <% if @user.id == current_user.id %>
+                        <%= link_to edit_artwork_path(artwork), class: "panel-block" do %>
+                          <span class="panel-icon">
+                            <i class="fas fa-edit"></i>
+                          </span>
+                          この作品を編集する
+                        <% end %>
+                        <%= link_to artwork_path(artwork), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
+                          <span class="panel-icon">
+                            <i class="fas fa-trash"></i>
+                          </span>
+                          この作品を削除する
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="content">
+                    <time><%= artwork.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
+</main>

@@ -1,0 +1,133 @@
+@import "mixin";
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  &:hover {
+    color: #888;
+  }
+}
+
+li {
+  list-style-type: none;
+}
+
+body {
+  font-variant-ligatures: none;
+  font-family: "小塚ゴシック Pr6N", "游ゴシック体", "YuGothic", "游ゴシック",
+    "Yu Gothic", sans-serif;
+  overflow-x: hidden;
+  color: $black;
+}
+
+main {
+  padding: 80px 0;
+}
+
+.gothic {
+  font-family: "小塚ゴシック Pr6N", "游ゴシック体", "YuGothic", "游ゴシック",
+    "Yu Gothic", sans-serif;
+}
+
+.mincho {
+  font-family: "小塚明朝 Pr6N", "游明朝", "Yu Mincho", "游明朝体", "YuMincho",
+    serif;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+}
+
+.block {
+  display: block !important;
+}
+
+.none {
+  display: none !important;
+}
+
+.pc {
+  display: block !important;
+  @include tab {
+    display: none !important;
+  }
+}
+
+.tab {
+  display: none !important;
+  @include tab {
+    display: block !important;
+  }
+}
+
+.spacer-small {
+  height: 20px;
+}
+
+.spacer-medium {
+  height: 32px;
+}
+
+.spacer-large {
+  height: 60px;
+}
+
+.center {
+  @include center;
+  text-align: center;
+}
+
+.right {
+  @include right;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px !important;
+  @include center;
+  padding: 0 40px;
+  @include tab {
+    padding: 0 calc(40vw / (768 / 100));
+  }
+}
+
+.flex {
+  @include flex;
+}
+
+.flex-column {
+  @include flex-column;
+}
+
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.flex-around {
+  @include flex-around;
+}
+
+.page-title {
+  font-size: 24px;
+  text-align: center;
+  font-family: "游ゴシック体", "YuGothic", "游ゴシック", "Yu Gothic", sans-serif;
+}
+
+.border-none {
+  input {
+    box-shadow: none;
+    border: none;
+  }
+}
+
+.primary-light {
+  color: $black !important;
+  background: $primaryLight !important;
+}

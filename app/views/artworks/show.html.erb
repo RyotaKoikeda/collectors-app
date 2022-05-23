@@ -1,0 +1,60 @@
+<main>
+  <div class="container">
+    <h2 class="page-title">
+      作品詳細
+    </h2>
+    <div class="spacer-medium"></div>
+    <section class="section">
+      <div class="columns is-centered">
+        <div class="column is-7">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3 artworkDetail-thum">
+                <%= attachment_image_tag @artwork, :image %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4"><%= @artwork.title %></p>
+                </div>
+              </div>
+              <div class="content">
+                <table class="table is-narrow">
+                  <tr>
+                    <th>詳細</th>
+                  </tr>
+                  <tr>
+                    <td><%= simple_format @artwork.body %></td>
+                  </tr>
+                </table>
+                <% if @artwork.user.id == current_user.id %>
+                  <%= link_to "編集画面へ", edit_artwork_path(@artwork), class: "button is-success primary-light" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column is-4">
+          <article class="panel is-link">
+            <p class="panel-heading primary-light">
+              By <%= @artwork.user.username %>
+            </p>
+            <div class="panel-block">
+              <p class="control">
+                <%= @artwork.user.profile %>
+              </p>
+            </div>
+            <%= link_to user_path(@artwork.user), class: "panel-block" do %>
+              <span class="panel-icon">
+                <i class="fas fa-user" aria-hidden="true"></i>
+              </span>
+              <%= @artwork.user.username %> さんのページへ
+            <% end %>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
